@@ -21,11 +21,11 @@ $conn = new PDO('mysql:host=192.168.0.12;dbname=configuracion','publicador','d3v
 $sql = 
 "SELECT
     g.Pk_Id,
-    g.SHAPE,
+    g.Shape,
     g.Fk_Id_Via,
-    g.de,
-    g.hasta,
-    AsWKB ( SHAPE ) AS wkb,
+    g.Abscisa_Inicial,
+    g.Abscisa_Final,
+    AsWKB ( Shape ) AS wkb,
     (
 SELECT
     d.Calificacion 
@@ -37,7 +37,7 @@ WHERE
     d.Fk_Id_Medicion = 475 
     AND d.Fk_Id_Costado = 31 
     AND d.Fk_Id_Tipo_Medicion = 1 
-    AND d.Abscisa = g.de 
+    AND d.Abscisa = g.Abscisa_Inicial
     ) AS Calificacion 
 FROM
     vias_geometrias AS g";
@@ -60,7 +60,7 @@ while ($row = $rs->fetch(PDO::FETCH_ASSOC)) {
     $properties = $row;
     # Remove wkb and geometry fields from properties
     unset($properties['wkb']);
-    unset($properties['SHAPE']);
+    unset($properties['Shape']);
     $feature = array(
          'type' => 'Feature',
          'geometry' => json_decode(wkb_to_json($row['wkb'])),
