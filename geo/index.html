@@ -38,11 +38,17 @@
     <script src="data/AbsS3_0.js"></script>
 
 	<?php include 'mysql_geojson.php'; ?>
-	
-	<div id ="map"> </div>	
-	
-	<script>
-	var map = L.map('map', {center: [5.91, -74.85],zoom: 11});
+	<div id ="map"></div>
+
+	<script type="text/javascript">
+        var url_string = window.location.href
+        var url = new URL(url_string);
+
+        var valor_zoom = url.searchParams.get("zoom");
+        var id_medicion = url.searchParams.get("medicion");
+        var id_tipo_medicion = url.searchParams.get("tipo");
+
+	var map = L.map('map', {center: [5.91, -74.85],zoom: valor_zoom});
 	var hash = new L.Hash(map);
 
 	L.control.locate().addTo(map);
@@ -123,7 +129,7 @@
         style: style_vias,
     });
 	
-	$.getJSON("mysql_geojson.php", function (data) {
+	$.getJSON(`mysql_geojson.php?id_medicion=${id_medicion}&id_tipo_medicion=${id_tipo_medicion}`, function (data) {
 	casas.addData(data);
 	});
 
