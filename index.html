@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Inicio</title>
+		<style type="text/css">
+			body{
+				font-family: 'Candara';
+			}
+
+			#contenido{
+				background-color: gray;
+				width: auto%;
+			}
+
+			#menu{
+				height: 20px;
+				padding: 0;
+				text-align: center;
+			}
+
+			#menu li {
+				display: inline;
+			}
+
+			#menu li a {
+				background-color: #2175bc;
+				color: #fff;
+				float: center;
+				padding: 10px;
+				text-decoration: none;
+			}
+
+			#menu li a:hover {
+				background-color: #2586d7;
+				margin-top: -2;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="menu">
+			<li><a onClick="javascript:cargar('verticales');">Señales verticales</a></li>
+			<li><a onClick="javascript:cargar('horizontales');">Señales horizontales</a></li>
+			<li><a onClick="javascript:cargar('obras');">Obras de arte</a></li>
+		</ul>
+
+		<div id="contenido">
+			Contenido
+		</div>
+		
+		<script src="js/jquery.js"></script>
+
+		<script type="text/javascript">
+			function cargar(tipo){
+				$("#contenido").load("./verticales/index.html")
+			}
+		</script>
+	</body>
+</html>
