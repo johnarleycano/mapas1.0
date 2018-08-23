@@ -47,6 +47,7 @@
         var valor_zoom = url.searchParams.get("zoom");
         var id_medicion = url.searchParams.get("medicion");
         var id_tipo_medicion = url.searchParams.get("tipo");
+        var id_costado = url.searchParams.get("costado");
 
 	var map = L.map('map', {center: [5.91, -74.85],zoom: valor_zoom});
 	var hash = new L.Hash(map);
@@ -129,13 +130,11 @@
         style: style_vias,
     });
 	
-	$.getJSON(`mysql_geojson.php?id_medicion=${id_medicion}&id_tipo_medicion=${id_tipo_medicion}`, function (data) {
+    $.getJSON(`mysql_geojson.php?id_medicion=${id_medicion}&id_tipo_medicion=${id_tipo_medicion}&id_costado=${id_costado}`, function (data) {
 	casas.addData(data);
 	});
 
 	casas.addTo(map);	
-
-
 	
 
 	function style_AbsS3_0_0() {
