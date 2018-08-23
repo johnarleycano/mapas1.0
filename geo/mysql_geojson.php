@@ -17,6 +17,11 @@ function wkb_to_json($wkb) {
 # Connect to MySQL database
 $conn = new PDO('mysql:host=192.168.0.12;dbname=configuracion','publicador','d3v1m3d');
 
+
+// Variables
+$id_medicion = (isset($_GET["id_medicion"])) ? $_GET["id_medicion"] : "" ;
+$id_tipo_medicion = (isset($_GET["id_tipo_medicion"])) ? $_GET["id_tipo_medicion"] : "" ;
+
 # Build SQL SELECT statement and return the geometry as a WKB element
 $sql = 
 "SELECT
@@ -34,9 +39,9 @@ FROM
     INNER JOIN configuracion.costados AS c ON d.Fk_Id_Costado = c.Pk_Id
     INNER JOIN configuracion.tipos_costados AS tc ON c.Fk_Id_Tipo_Costado = tc.Pk_Id 
 WHERE
-    d.Fk_Id_Medicion = 475 
+    d.Fk_Id_Medicion = {$id_medicion} 
     AND d.Fk_Id_Costado = 31 
-    AND d.Fk_Id_Tipo_Medicion = 1 
+    AND d.Fk_Id_Tipo_Medicion = {$id_tipo_medicion} 
     AND d.Abscisa = g.Abscisa_Inicial
     ) AS Calificacion 
 FROM
