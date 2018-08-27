@@ -22,6 +22,7 @@ $conn = new PDO('mysql:host=192.168.0.12;dbname=configuracion','publicador','d3v
 $id_medicion = (isset($_GET["id_medicion"])) ? $_GET["id_medicion"] : "" ;
 $id_tipo_medicion = (isset($_GET["id_tipo_medicion"])) ? $_GET["id_tipo_medicion"] : "" ;
 $id_costado = (isset($_GET["id_costado"])) ? $_GET["id_costado"] : "" ;
+$id_via = (isset($_GET["id_via"])) ? $_GET["id_via"] : "" ;
 
 # Build SQL SELECT statement and return the geometry as a WKB element
 $sql = 
@@ -46,7 +47,9 @@ WHERE
     AND d.Abscisa = g.Abscisa_Inicial
     ) AS Calificacion 
 FROM
-    vias_geometrias AS g";
+    vias_geometrias AS g
+    WHERE
+g.Fk_Id_Via = {$id_via}";
 
 # Try query or error
 $rs = $conn->query($sql);
