@@ -21,6 +21,8 @@ $conn = new PDO('mysql:host=192.168.0.12;dbname=configuracion','publicador','d3v
 // Variables
 $id_medicion = (isset($_GET["id_medicion"])) ? $_GET["id_medicion"] : "" ;
 $id_tipo_medicion = (isset($_GET["id_tipo_medicion"])) ? $_GET["id_tipo_medicion"] : "" ;
+$id_costado = (isset($_GET["id_costado"])) ? $_GET["id_costado"] : "" ;
+$id_via = (isset($_GET["id_via"])) ? $_GET["id_via"] : "" ;
 
 # Build SQL SELECT statement and return the geometry as a WKB element
 $sql = 
@@ -40,12 +42,14 @@ FROM
     INNER JOIN configuracion.tipos_costados AS tc ON c.Fk_Id_Tipo_Costado = tc.Pk_Id 
 WHERE
     d.Fk_Id_Medicion = {$id_medicion} 
-    AND d.Fk_Id_Costado = 31 
+    AND d.Fk_Id_Costado = {$id_costado} 
     AND d.Fk_Id_Tipo_Medicion = {$id_tipo_medicion} 
     AND d.Abscisa = g.Abscisa_Inicial
     ) AS Calificacion 
 FROM
-    vias_geometrias AS g";
+    vias_geometrias AS g
+    WHERE
+g.Fk_Id_Via = {$id_via}";
 
 # Try query or error
 $rs = $conn->query($sql);
