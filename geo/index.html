@@ -129,13 +129,11 @@
         style: style_vias,
     });
 	
-	$.getJSON(`mysql_geojson.php?id_medicion=${id_medicion}&id_tipo_medicion=${id_tipo_medicion}`, function (data) {
-	casas.addData(data);
+    $.getJSON(`mysql_geojson.php?id_medicion=${id_medicion}&id_tipo_medicion=${id_tipo_medicion}&id_costado=${id_costado}&id_via=${id_via}`, function (data) {
+	   casas.addData(data);
 	});
 
-	casas.addTo(map);	
-
-
+    casas.addTo(map);
 	
 
 	function style_AbsS3_0_0() {
