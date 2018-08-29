@@ -42,15 +42,14 @@
 
 	<script type="text/javascript">
         var url_string = window.location.href
-        var url = new URL(url_string);
-        var id_medicion = url.searchParams.get("medicion");
-        var id_tipo_medicion = url.searchParams.get("tipo");
-        var id_costado = url.searchParams.get("costado");
-        var id_via = url.searchParams.get("via");
+        var url = new URL(url_string)
+        var id_medicion = url.searchParams.get("medicion")
+        var id_tipo_medicion = url.searchParams.get("tipo")
+        var id_costado = url.searchParams.get("costado")
+        var id_via = url.searchParams.get("via")
 
 	var map = L.map('map', {center: [6.0201, -75.0109],zoom: 11});
 	var hash = new L.Hash(map);
-    console.log(hash)
 
 	L.control.locate().addTo(map);
 	var BingAerial = new L.BingLayer("Pl2wXFOEKQ0lIT6FDWrM~7S7lA5j_F2sDUhSdCeQVzw~AvN-ATn5N1EQzxbEEBkYWNUYY1AyXIzXPwXex81xLAN1RyJYJaML4e2gD9QTzsIU", {type: "Aerial"});	
@@ -134,7 +133,6 @@
 	   casas.addData(data);
 	});
 
-    console.log(casas)	
     casas.addTo(map);
 	
 
