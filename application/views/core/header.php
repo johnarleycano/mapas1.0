@@ -30,5 +30,10 @@
 	<script src="<?php echo base_url(); ?>js/fontawesome-all.min.js"></script>
 <?php } ?>
 
+<!-- Estilos -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/leaflet.css" />
+
 <!-- Scripts -->
 <script src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script> <!-- jQuery -->
+<script src="<?php echo base_url(); ?>js/leaflet/leaflet.js"></script>
+<script src="<?php echo base_url(); ?>js/leaflet/bing.js"></script>
