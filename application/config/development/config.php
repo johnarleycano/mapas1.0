@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |
 */
-$config['id_aplicacion'] = 1;
+$config['id_aplicacion'] = 17;
 $config['id_aplicacion_sesion'] = 15;
 
 /*
